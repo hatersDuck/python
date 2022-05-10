@@ -51,3 +51,6 @@ for i in range(countWords):
         wordsEng[i][0] = wordL3eng[rn.randint(0, len(wordL3eng)-1)] + wordL2eng[rn.randint(0, len(wordL2eng)-1)] + wordL2eng[rn.randint(0, len(wordL2eng)-1)]
     wordsRus[i][1] = wordsRus[i][0][0] + wordsRus[i][0][rn.randint(1, len(wordsRus[i][0]) - 1)]
     wordsEng[i][1] = wordsEng[i][0][0] + wordsEng[i][0][rn.randint(1, len(wordsEng[i][0]) - 1)]
+
+alphRus = alphRus[0] + alphRus[1]
+alphEng = alphEng[0] + alphEng[1]

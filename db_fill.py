@@ -30,19 +30,21 @@ for i in range(len(tables)):
     tables[i] = dCls.db_class(tables[i])
 
 language = True
+if (not language):
+    gen.alphRus = gen.alphEng
+    gen.wordsRus = gen.wordsEng
 cnt_row = 50
 
 for i in range(cnt_row):
     tempRu = rn.randint(0, len(gen.wordsRus) - 1)
-    tempEng = rn.randint(0, len(gen.wordsEng) - 1)
     tables[0].addAll
     (   
     i+1,
-    gen.wordsRus[tempRu][1] if (language) else gen.wordsEng[tempEng][1],
+    gen.wordsRus[tempRu][1],
     rn.randint(1,cnt_row),
     rn.randint(1,cnt_row),
     str(rn.randint(0,1)),
-    gen.wordsRus[tempRu][0] if (language) else gen.wordsEng[tempEng][0]
+    gen.wordsRus[tempRu][0]
     )
     tables[1].addAll
     (   
@@ -56,24 +58,27 @@ for i in range(cnt_row):
     rn.randint(1,cnt_row),
     ('кв.' if (language) else 'r.') + str(rn.randint(1,300))
     )
+    tempRu = rn.randint(0, len(gen.wordsRus) - 1)
     tables[2].addAll
     (  
     i+1,
-    str(),
-    int(),
-    int(),
-    str(),
-    str()
+    gen.wordsRus[tempRu][1],
+    rn.randint(1,cnt_row),
+    rn.randint(cnt_row,100 + cnt_row),
+    gen.wordsRus[tempRu][0],
+    f'#{rn.randint(10**4, 10**5-1)}'
     )
+    note = ['Многокваритрный', 'Частный', "Общежитие"] if (language) else ['Skyscraper','Penthouse','Tower block','Palace']
+    letters = 'aб' if (language) else 'ab'
     tables[3].addAll
     (   
     i+1,
-    int(),
-    str(),
-    str(),
-    str(),
-    str(),
-    str()
+    rn.randint(1,cnt_row),
+    f'№{rn.randint(1,100)}',
+    gen.alphRus[rn.randint(0, len(gen.alphRus) - 1)],
+    note[rn.randint(0, len(note)-1)],
+    letters[rn.randint(0,1)],
+    str(rn.randint(1,10**5))
     )
     tables[4].addAll
     (   
