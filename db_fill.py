@@ -29,29 +29,32 @@ for i,tab in enumerate(db_cr.create_tables):
 for i in range(len(tables)):
     tables[i] = dCls.db_class(tables[i])
 
-language = 'ru'
+language = True
+cnt_row = 50
 
-for i in range(50):
+for i in range(cnt_row):
+    tempRu = rn.randint(0, len(gen.wordsRus) - 1)
+    tempEng = rn.randint(0, len(gen.wordsEng) - 1)
     tables[0].addAll
     (   
     i+1,
-    str(),
-    int(),
-    int(),
-    str(),
-    str()
+    gen.wordsRus[tempRu][1] if (language) else gen.wordsEng[tempEng][1],
+    rn.randint(1,cnt_row),
+    rn.randint(1,cnt_row),
+    str(rn.randint(0,1)),
+    gen.wordsRus[tempRu][0] if (language) else gen.wordsEng[tempEng][0]
     )
     tables[1].addAll
     (   
     i+1,
-    int(),
-    str(),
-    str(), #date
-    str(), #date
-    int(),
-    int(),
-    int(),
-    str()
+    rn.randint(1,cnt_row),
+    gen.alphRus[rn.randint(0, len(gen.alphRus) - 1)] + str(rn.randint(10**8, 10**9-1)),
+    gen.dateRN[rn.randint(0,int(len(gen.dateRN)/2)-1)],
+    gen.dateRN[rn.randint(int(len(gen.dateRN)/2), len(gen.dateRN)-1)],
+    rn.randint(1,cnt_row),
+    rn.randint(10**16, 10**17-1),
+    rn.randint(1,cnt_row),
+    ('кв.' if (language) else 'r.') + str(rn.randint(1,300))
     )
     tables[2].addAll
     (  
