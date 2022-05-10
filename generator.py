@@ -14,7 +14,7 @@ wordsRus = []
 wordsEng = []
 countWords = 100
 
-
+#Не убирал всё в функции думаю, что буду менять алгоритмы для разных языков
 while date < today:
     dateRN.append(str(date))
     date += datetime.timedelta(days=1)
@@ -38,12 +38,16 @@ for i in range(len(wordL2eng)):
         else:
             wordL3eng.append(wordL2eng[i] + alphEng[1][j])
 for i in range(countWords):
+    wordsRus.append([0]*2)
+    wordsEng.append([0]*2)
     if (i%3 == 0):
-        wordsRus.append(wordL2rus[rn.randint(0, len(wordL2rus)-1)] + wordL3rus[rn.randint(0, len(wordL3rus)-1)])
-        wordsEng.append(wordL2eng[rn.randint(0, len(wordL2eng)-1)] + wordL3eng[rn.randint(0, len(wordL3eng)-1)])
+        wordsRus[i][0] = wordL2rus[rn.randint(0, len(wordL2rus)-1)] + wordL3rus[rn.randint(0, len(wordL3rus)-1)]
+        wordsEng[i][0] = wordL2eng[rn.randint(0, len(wordL2eng)-1)] + wordL3eng[rn.randint(0, len(wordL3eng)-1)]
     elif (i%3 == 1):
-        wordsRus.append(wordL3rus[rn.randint(0, len(wordL3rus)-1)] + wordL3rus[rn.randint(0, len(wordL3rus)-1)])
-        wordsEng.append(wordL3eng[rn.randint(0, len(wordL3eng)-1)] + wordL3eng[rn.randint(0, len(wordL3eng)-1)])
+        wordsRus[i][0] = wordL3rus[rn.randint(0, len(wordL3rus)-1)] + wordL3rus[rn.randint(0, len(wordL3rus)-1)]
+        wordsEng[i][0] = wordL3eng[rn.randint(0, len(wordL3eng)-1)] + wordL3eng[rn.randint(0, len(wordL3eng)-1)]
     elif (i%3 == 2):
-        wordsRus.append(wordL3rus[rn.randint(0, len(wordL3rus)-1)] + wordL2rus[rn.randint(0, len(wordL2rus)-1)] + wordL2rus[rn.randint(0, len(wordL2rus)-1)])
-        wordsEng.append(wordL3eng[rn.randint(0, len(wordL3eng)-1)] + wordL2eng[rn.randint(0, len(wordL2eng)-1)] + wordL2eng[rn.randint(0, len(wordL2eng)-1)])
+        wordsRus[i][0] = wordL3rus[rn.randint(0, len(wordL3rus)-1)] + wordL2rus[rn.randint(0, len(wordL2rus)-1)] + wordL2rus[rn.randint(0, len(wordL2rus)-1)]
+        wordsEng[i][0] = wordL3eng[rn.randint(0, len(wordL3eng)-1)] + wordL2eng[rn.randint(0, len(wordL2eng)-1)] + wordL2eng[rn.randint(0, len(wordL2eng)-1)]
+    wordsRus[i][1] = wordsRus[i][0][0] + wordsRus[i][0][rn.randint(1, len(wordsRus[i][0]) - 1)]
+    wordsEng[i][1] = wordsEng[i][0][0] + wordsEng[i][0][rn.randint(1, len(wordsEng[i][0]) - 1)]
