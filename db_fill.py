@@ -29,6 +29,8 @@ for i,tab in enumerate(db_cr.create_tables):
 for i in range(len(tables)):
     tables[i] = dCls.db_class(tables[i])
 
+language = 'ru'
+
 for i in range(50):
     tables[0].addAll
     (   
