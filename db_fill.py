@@ -3,31 +3,25 @@ import db_class as dCls
 import random as rn
 import generator as gen
 
-tables = []
-"""0 - APUS_PLAN \n
-1 - CONTRACT \n
-2 - DEPT \n
-3 - HOUSES \n
-4 - OTHER_SVC \n
-5 - PAYMENTS \n
-6 - SALDO \n
-7 - SERVICES \n
-8 - STREETS_REF \n
-9 - SVC_REF \n
-10 - SVC_UNITS_REF \n
-11 - TARIFED_SERVICES \n
-12 - TAX_TARIF_REF \n
-13 - TERRITORY_CONSTITUTE \n
-14 - TERRITORY_TYPE \n
-15 - TOWN \n
-16 - T_TOWN_TYPE \n
-17 - USERS \n
-18 - USER_TYPE_REF \n"""
-
-for i,tab in enumerate(db_cr.create_tables):
-    tables.append(tab[15:tab.find('"', 15)])
-for i in range(len(tables)):
-    tables[i] = dCls.db_class(tables[i])
+APUS_PLAN  = dCls.db_class('APUS_PLAN')
+CONTRACT = dCls.db_class('CONTRACT')
+DEPT = dCls.db_class('DEPT')
+HOUSES = dCls.db_class('HOUSES')
+OTHER_SVC = dCls.db_class('OTHER_SVC')
+PAYMENTS = dCls.db_class('PAYMENTS')
+SALDO = dCls.db_class('SALDO')
+SERVICES = dCls.db_class('SERVICES')
+STREETS_REF  = dCls.db_class('STREETS_REF')
+SVC_REF = dCls.db_class('SVC_REF')
+SVC_UNITS_REF = dCls.db_class('SVC_UNITS_REF')
+TARIFED_SERVICES = dCls.db_class('TARIFED_SERVICES')
+TAX_TARIF_REF = dCls.db_class('TAX_TARIF_REF')
+TERRITORY_CONSTITUTE = dCls.db_class('TERRITORY_CONSTITUTE')
+TERRITORY_TYPE = dCls.db_class('TERRITORY_TYPE')
+TOWN = dCls.db_class('TOWN')
+T_TOWN_TYPE = dCls.db_class('T_TOWN_TYPE')
+USERS = dCls.db_class('USERS')
+USER_TYPE_REF = dCls.db_class('USER_TYPE_REF')
 
 language = True
 if (not language):
@@ -36,9 +30,52 @@ if (not language):
 cnt_row = 50
 
 for i in range(cnt_row):
+    PAYMENTS.addAll(   
+    i+1,
+    rn.randint(1,cnt_row),
+    rn.randint(1,cnt_row),
+    rn.randint(1,cnt_row),
+    rn.randint(500,1000),
+    gen.alphRus[rn.randint(0,len(gen.alphRus) - 1)] + str(rn.randint(10**6, 10**7 - 1)),
+    f'+7({rn.randint(900,999)})-{rn.randint(100,999)}-{rn.randint(10,99)}-{rn.randint(10,99)}',
+    gen.alphRus[rn.randint(0,10)] + str(rn.randint(10**4, 10**5-1)),
+    gen.dateRN[rn.randint(0,int(len(gen.dateRN)/2)-1)],
+    gen.dateRN[rn.randint(int(len(gen.dateRN)/2), len(gen.dateRN)-1)]
+    )
+
     tempRu = rn.randint(0, len(gen.wordsRus) - 1)
-    tables[0].addAll
-    (   
+    SVC_UNITS_REF.addAll( 
+    i+1,
+    str(tempRu),
+    gen.wordsRus[tempRu][0],
+    gen.wordsRus[tempRu][1]
+    )
+
+    tempRu = rn.randint(0, len(gen.wordsRus) - 1)
+    TERRITORY_TYPE.addAll(  
+    i+1,
+    gen.wordsRus[tempRu][0],
+    gen.wordsRus[tempRu][1]
+    )
+
+    tempRu = rn.randint(0, len(gen.wordsRus) - 1)
+    T_TOWN_TYPE.addAll( 
+    i+1,
+    gen.wordsRus[tempRu][0],
+    gen.wordsRus[tempRu][1],
+    rn.randint(0, 1)
+    )
+    
+    USER_TYPE_REF.addAll(  
+    i+1,
+    gen.wordsRus[rn.randint(0,len(gen.wordsRus) - 1)][0],
+    'YN'[rn.randint(0,1)],
+    rn.randint(0,1)
+    )
+    
+for i in range(cnt_row):
+    tempRu = rn.randint(0, len(gen.wordsRus) - 1)
+    APUS_PLAN.addAll(   
     i+1,
     gen.wordsRus[tempRu][1],
     rn.randint(1,cnt_row),
@@ -46,8 +83,7 @@ for i in range(cnt_row):
     str(rn.randint(0,1)),
     gen.wordsRus[tempRu][0]
     )
-    tables[1].addAll
-    (   
+    CONTRACT.addAll(   
     i+1,
     rn.randint(1,cnt_row),
     gen.alphRus[rn.randint(0, len(gen.alphRus) - 1)] + str(rn.randint(10**8, 10**9-1)),
@@ -59,8 +95,7 @@ for i in range(cnt_row):
     ('кв.' if (language) else 'r.') + str(rn.randint(1,300))
     )
     tempRu = rn.randint(0, len(gen.wordsRus) - 1)
-    tables[2].addAll
-    (  
+    DEPT.addAll(  
     i+1,
     gen.wordsRus[tempRu][1],
     rn.randint(1,cnt_row),
@@ -70,8 +105,7 @@ for i in range(cnt_row):
     )
     note = ['Многокваритрный', 'Частный', "Общежитие"] if (language) else ['Skyscraper','Penthouse','Tower block','Palace']
     letters = 'aб' if (language) else 'ab'
-    tables[3].addAll
-    (   
+    HOUSES.addAll(   
     i+1,
     rn.randint(1,cnt_row),
     f'№{rn.randint(1,100)}',
@@ -82,8 +116,7 @@ for i in range(cnt_row):
     )
     tempSum = rn.randint(300,1000)
 
-    tables[4].addAll
-    (   
+    OTHER_SVC.addAll(   
     i+1,
     rn.randint(1,cnt_row),
     rn.randint(1,cnt_row),
@@ -99,29 +132,14 @@ for i in range(cnt_row):
     gen.dateRN[rn.randint(0,len(gen.dateRN)-1)], #date
     gen.alphRus[rn.randint(0,10)] + str(rn.randint(10**4, 10**5-1))
     )
-    tables[5].addAll
-    (   
-    i+1,
-    rn.randint(1,cnt_row),
-    rn.randint(1,cnt_row),
-    rn.randint(1,cnt_row),
-    rn.randint(500,1000),
-    gen.alphRus[rn.randint(0,len(gen.alphRus) - 1)] + str(rn.randint(10**6, 10**7 - 1)),
-    f'+7({rn.randint(900,999)})-{rn.randint(100,999)}-{rn.randint(10,99)}-{rn.randint(10,99)}',
-    gen.alphRus[rn.randint(0,10)] + str(rn.randint(10**4, 10**5-1)),
-    gen.dateRN[rn.randint(0,int(len(gen.dateRN)/2)-1)],
-    gen.dateRN[rn.randint(int(len(gen.dateRN)/2), len(gen.dateRN)-1)]
-    )
-    tables[6].addAll
-    (  
+    SALDO.addAll(  
     i+1,
     rn.randint(1,cnt_row),
     rn.randint(0,10000),
     rn.randint(1,cnt_row),
     rn.randint(1,cnt_row)
     )
-    tables[7].addAll
-    (   
+    SERVICES.addAll(   
     i+1,
     rn.randint(1,cnt_row),
     rn.randint(10**5,10**6 - 1),
@@ -137,8 +155,7 @@ for i in range(cnt_row):
     rn.randint(1,cnt_row),
     rn.randint(1,cnt_row)
     )
-    tables[8].addAll
-    (   
+    STREETS_REF.addAll(   
     i+1,
     rn.randint(1,cnt_row),
     gen.wordsRus[rn.randint(0, len(gen.wordsRus) - 1)][0],
@@ -146,33 +163,23 @@ for i in range(cnt_row):
     )
 
     tempRu = rn.randint(0, len(gen.wordsRus) - 1)
-    tables[9].addAll
-    (   
+    SVC_REF.addAll(   
     i+1,
     rn.randint(1,cnt_row),
     rn.randint(1,cnt_row),
     gen.wordsRus[tempRu][1],
     'YN'[rn.randint(0,1)],
     str(rn.randint(0,1)),
-    str(rn.randint(i+1*10000, 10**4-1)),
+    str(rn.randint(i*1000, 10**4-1)),
     gen.wordsRus[tempRu][0],
     rn.randint(1,cnt_row),
     ['PHONE','NGN', 'NGN_SVC', 'PHONE_CVC', 'FREE_CVC', 'OTHER_SVC', 'FREE_NGN'][rn.randint(0,6)],
     'KPSRTX'[rn.randint(0,5)],
     rn.randint(1,cnt_row)
     )
-    tempRu = rn.randint(0, len(gen.wordsRus) - 1)
-    tables[10].addAll
-    ( 
-    i+1,
-    str(tempRu),
-    gen.wordsRus[tempRu][0],
-    gen.wordsRus[tempRu][1]
-    )
     summ = rn.randint(500,1000)
     sumSt = rn.randint(500,1000)
-    tables[11].addAll
-    (  
+    TARIFED_SERVICES.addAll(  
     i+1,
     rn.randint(1,cnt_row),
     rn.randint(1,cnt_row),
@@ -185,8 +192,7 @@ for i in range(cnt_row):
     int(summ + summ*(rn.randint(0,20)/100) + sumSt*0.2),
     int(sumSt*0.2)
     )
-    tables[12].addAll
-    ( 
+    TAX_TARIF_REF.addAll0( 
     i+1,
     rn.randint(1,cnt_row),
     gen.dateRN[rn.randint(0,int(len(gen.dateRN)/2)-1)], #date
@@ -194,23 +200,14 @@ for i in range(cnt_row):
     'YN'[rn.randint(0,1)],
     gen.dateRN[rn.randint(int(len(gen.dateRN)/2), len(gen.dateRN)-1)] #date
     )
-    tables[13].addAll
-    (  
+    TERRITORY_CONSTITUTE.addAll(  
     i+1,
     rn.randint(1,cnt_row),
     gen.wordsRus[rn.randint(0, len(gen.wordsRus) - 1)][0],
     rn.randint(1,cnt_row)
     )
     tempRu = rn.randint(0, len(gen.wordsRus) - 1)
-    tables[14].addAll
-    (  
-    i+1,
-    gen.wordsRus[tempRu][0],
-    gen.wordsRus[tempRu][1]
-    )
-    tempRu = rn.randint(0, len(gen.wordsRus) - 1)
-    tables[15].addAll
-    ( 
+    TOWN.addAll( 
     i+1,
     gen.wordsRus[tempRu][0],
     rn.randint(1,cnt_row),
@@ -218,16 +215,7 @@ for i in range(cnt_row):
     rn.randint(1,cnt_row)
     )
     tempRu = rn.randint(0, len(gen.wordsRus) - 1)
-    tables[16].addAll
-    ( 
-    i+1,
-    gen.wordsRus[tempRu][0],
-    gen.wordsRus[tempRu][1],
-    rn.randint(0, 1)
-    )
-    tempRu = rn.randint(0, len(gen.wordsRus) - 1)
-    tables[17].addAll
-    ( 
+    T_TOWN_TYPE.addAll( 
     i+1,
     rn.randint(1,cnt_row),
     rn.randint(1,cnt_row),
@@ -238,7 +226,7 @@ for i in range(cnt_row):
     str(rn.randint(10**12, 10**13 - 1)),
     gen.dateRN[rn.randint(0,int(len(gen.dateRN)/2)-1)],
     gen.dateRN[rn.randint(int(len(gen.dateRN)/2), len(gen.dateRN)-1)],
-    str(),
+    ('кв.' if (language) else 'r.') + str(rn.randint(1,300)),
     'YN'[rn.randint(0,1)],
     gen.wordsRus[0, len(gen.wordsRus) - 1] + gen.wordsRus[0, len(gen.wordsRus) - 1] ,
     f'{rn.randint(10**4, 10**5-1)}-{rn.randint(10**4, 10**5-1)}-{rn.randint(10**4, 10**5-1)}-{rn.randint(10**4, 10**5-1)}-',
@@ -249,10 +237,4 @@ for i in range(cnt_row):
     rn.randint(1,cnt_row),
     rn.randint(1,cnt_row)
     )
-    tables[18].addAll
-    (  
-    i+1,
-    gen.wordsRus[rn.randint(0,len(gen.wordsRus) - 1)],
-    'YN'[rn.randint(0,1)],
-    rn.randint(0,1)
-    )
+    
