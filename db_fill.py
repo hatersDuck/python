@@ -197,58 +197,62 @@ for i in range(cnt_row):
     tables[13].addAll
     (  
     i+1,
-    int(),
-    str(),
-    int()
+    rn.randint(1,cnt_row),
+    gen.wordsRus[rn.randint(0, len(gen.wordsRus) - 1)][0],
+    rn.randint(1,cnt_row)
     )
+    tempRu = rn.randint(0, len(gen.wordsRus) - 1)
     tables[14].addAll
     (  
     i+1,
-    str(),
-    str()
+    gen.wordsRus[tempRu][0],
+    gen.wordsRus[tempRu][1]
     )
+    tempRu = rn.randint(0, len(gen.wordsRus) - 1)
     tables[15].addAll
     ( 
     i+1,
-    str(),
-    int(),
-    int(),
-    int()
+    gen.wordsRus[tempRu][0],
+    rn.randint(1,cnt_row),
+    rn.randint(1,cnt_row),
+    rn.randint(1,cnt_row)
     )
+    tempRu = rn.randint(0, len(gen.wordsRus) - 1)
     tables[16].addAll
     ( 
     i+1,
-    str(),
-    str(),
-    int()
+    gen.wordsRus[tempRu][0],
+    gen.wordsRus[tempRu][1],
+    rn.randint(0, 1)
     )
+    tempRu = rn.randint(0, len(gen.wordsRus) - 1)
     tables[17].addAll
     ( 
     i+1,
-    int(),
-    int(),
-    int(),
-    int(),
+    rn.randint(1,cnt_row),
+    rn.randint(1,cnt_row),
+    rn.randint(1,cnt_row),
+    rn.randint(1,cnt_row),
+    str(gen.alphRus[rn.randint(0,len(gen.alphRus) - 1)] + str(rn.randint(10**6, 10**7 - 1)),),
+    str(gen.wordsRus[tempRu][0]),
+    str(rn.randint(10**12, 10**13 - 1)),
+    gen.dateRN[rn.randint(0,int(len(gen.dateRN)/2)-1)],
+    gen.dateRN[rn.randint(int(len(gen.dateRN)/2), len(gen.dateRN)-1)],
     str(),
-    str(),
-    str(),
-    str(), #date
-    str(), #date
-    str(),
-    str(),
-    str(),
-    str(),
-    str(),
-    str(),
-    str(),
-    str(),
-    int(),
-    int()
+    'YN'[rn.randint(0,1)],
+    gen.wordsRus[0, len(gen.wordsRus) - 1] + gen.wordsRus[0, len(gen.wordsRus) - 1] ,
+    f'{rn.randint(10**4, 10**5-1)}-{rn.randint(10**4, 10**5-1)}-{rn.randint(10**4, 10**5-1)}-{rn.randint(10**4, 10**5-1)}-',
+    str(rn.randint(10**8, 10**9-1)),
+    f'+7({rn.randint(900,999)})-{rn.randint(100,999)}-{rn.randint(10,99)}-{rn.randint(10,99)}',
+    f'+7({rn.randint(900,999)})-{rn.randint(100,999)}-{rn.randint(10,99)}-{rn.randint(10,99)}',
+    f'{rn.randint(10,99)} {rn.randint(10,99)} {rn.randint(10**6, 10**7-1)}',
+    rn.randint(1,cnt_row),
+    rn.randint(1,cnt_row)
     )
     tables[18].addAll
     (  
     i+1,
-    str(),
-    str(),
-    int()
+    gen.wordsRus[rn.randint(0,len(gen.wordsRus) - 1)],
+    'YN'[rn.randint(0,1)],
+    rn.randint(0,1)
     )
