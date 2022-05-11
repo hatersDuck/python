@@ -24,7 +24,7 @@ class db_class(object):
 
     def addAll(self, *atr):
         if (len(atr) > len(self.__atribute)):
-            print(f'Слишком много аргументов ({self.__nameTable})')
+            print(f'Слишком много аргументов ({self.__nameTable}) ({len(atr) = } - {len(self.__atribute)})')
         else:
             exec = f'INSERT INTO {self.__nameTable} VALUES('
             for i,a in enumerate(atr):
@@ -34,7 +34,8 @@ class db_class(object):
                     else:
                         exec += str(a) + ','
                 else:
-                    print(f'Failed type -> {a = }, need {self.__atribute[i][1]}, \ttable {self.__nameTable}')
-            exec = exec[:len(exec)-1] + ');'
+                    print(f'Failed type -> {a =} {i =}, need {self.__atribute[i][1]}, \ttable {self.__nameTable}')
+            exec = exec[:len(exec) - 1] + ');'
+
             cursor.execute(exec)
             db_connect.commit()

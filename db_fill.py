@@ -166,11 +166,11 @@ for i in range(cnt_row):
     SVC_REF.addAll(   
     i+1,
     rn.randint(1,cnt_row),
-    rn.randint(1,cnt_row),
+    str(rn.randint(1,cnt_row)),
     gen.wordsRus[tempRu][1],
     'YN'[rn.randint(0,1)],
     str(rn.randint(0,1)),
-    str(rn.randint(i*1000, 10**4-1)),
+    str(rn.randint(10**3, 10**4-1)),
     gen.wordsRus[tempRu][0],
     rn.randint(1,cnt_row),
     ['PHONE','NGN', 'NGN_SVC', 'PHONE_CVC', 'FREE_CVC', 'OTHER_SVC', 'FREE_NGN'][rn.randint(0,6)],
@@ -192,7 +192,7 @@ for i in range(cnt_row):
     int(summ + summ*(rn.randint(0,20)/100) + sumSt*0.2),
     int(sumSt*0.2)
     )
-    TAX_TARIF_REF.addAll0( 
+    TAX_TARIF_REF.addAll( 
     i+1,
     rn.randint(1,cnt_row),
     gen.dateRN[rn.randint(0,int(len(gen.dateRN)/2)-1)], #date
@@ -215,7 +215,7 @@ for i in range(cnt_row):
     rn.randint(1,cnt_row)
     )
     tempRu = rn.randint(0, len(gen.wordsRus) - 1)
-    T_TOWN_TYPE.addAll( 
+    USERS.addAll( 
     i+1,
     rn.randint(1,cnt_row),
     rn.randint(1,cnt_row),
@@ -228,7 +228,7 @@ for i in range(cnt_row):
     gen.dateRN[rn.randint(int(len(gen.dateRN)/2), len(gen.dateRN)-1)],
     ('кв.' if (language) else 'r.') + str(rn.randint(1,300)),
     'YN'[rn.randint(0,1)],
-    gen.wordsRus[0, len(gen.wordsRus) - 1] + gen.wordsRus[0, len(gen.wordsRus) - 1] ,
+    gen.wordsRus[rn.randint(0, len(gen.wordsRus) - 1)][0] + gen.wordsRus[rn.randint(0, len(gen.wordsRus) - 1)][0] ,
     f'{rn.randint(10**4, 10**5-1)}-{rn.randint(10**4, 10**5-1)}-{rn.randint(10**4, 10**5-1)}-{rn.randint(10**4, 10**5-1)}-',
     str(rn.randint(10**8, 10**9-1)),
     f'+7({rn.randint(900,999)})-{rn.randint(100,999)}-{rn.randint(10,99)}-{rn.randint(10,99)}',
