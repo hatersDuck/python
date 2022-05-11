@@ -115,79 +115,84 @@ for i in range(cnt_row):
     tables[6].addAll
     (  
     i+1,
-    int(),
-    int(),
-    int(),
-    int()
+    rn.randint(1,cnt_row),
+    rn.randint(0,10000),
+    rn.randint(1,cnt_row),
+    rn.randint(1,cnt_row)
     )
     tables[7].addAll
     (   
     i+1,
-    int(),
-    int(),
-    int(),
-    int(),
-    int(),
-    str(),
-    str(), #date
-    str(), #date
-    str(),
-    str(), #date
-    str(),
-    int(),
-    int()
+    rn.randint(1,cnt_row),
+    rn.randint(10**5,10**6 - 1),
+    rn.randint(1,cnt_row),
+    rn.randint(1,cnt_row),
+    rn.randint(1,100),
+    f'+7({rn.randint(900,999)})-{rn.randint(100,999)}-{rn.randint(10,99)}-{rn.randint(10,99)}',
+    gen.dateRN[rn.randint(0,int(len(gen.dateRN)/2)-1)],
+    gen.dateRN[rn.randint(int(len(gen.dateRN)/2), len(gen.dateRN)-1)], #date
+    ('кв.' if (language) else 'r.') + str(rn.randint(1,300)),
+    gen.dateRN[-1], #date
+    'YN'[rn.randint(0,1)],
+    rn.randint(1,cnt_row),
+    rn.randint(1,cnt_row)
     )
     tables[8].addAll
     (   
     i+1,
-    int(),
-    str(),
-    int()
+    rn.randint(1,cnt_row),
+    gen.wordsRus[rn.randint(0, len(gen.wordsRus) - 1)][0],
+    rn.randint(1,cnt_row)
     )
+
+    tempRu = rn.randint(0, len(gen.wordsRus) - 1)
     tables[9].addAll
     (   
     i+1,
-    int(),
-    str(),
-    str(),
-    str(),
-    str(),
-    str(),
-    str(),
-    int(),
-    str(),
-    str(),
-    int()
+    rn.randint(1,cnt_row),
+    rn.randint(1,cnt_row),
+    gen.wordsRus[tempRu][1],
+    'YN'[rn.randint(0,1)],
+    str(rn.randint(0,1)),
+    str(rn.randint(i+1*10000, 10**4-1)),
+    gen.wordsRus[tempRu][0],
+    rn.randint(1,cnt_row),
+    ['PHONE','NGN', 'NGN_SVC', 'PHONE_CVC', 'FREE_CVC', 'OTHER_SVC', 'FREE_NGN'][rn.randint(0,6)],
+    'KPSRTX'[rn.randint(0,5)],
+    rn.randint(1,cnt_row)
     )
+    tempRu = rn.randint(0, len(gen.wordsRus) - 1)
     tables[10].addAll
     ( 
     i+1,
-    str(),
-    str(),
-    str()
+    str(tempRu),
+    gen.wordsRus[tempRu][0],
+    gen.wordsRus[tempRu][1]
     )
+    summ = rn.randint(500,1000)
+    sumSt = rn.randint(500,1000)
     tables[11].addAll
     (  
     i+1,
-    int(),
-    int(),
-    int(),
-    int(),
-    int(),
-    int(),
-    int(),
-    int(),
-    int(),
-    int()
+    rn.randint(1,cnt_row),
+    rn.randint(1,cnt_row),
+    rn.randint(1,cnt_row),
+    rn.randint(1,cnt_row),
+    summ,
+    int(summ*(rn.randint(0,20)/100)),
+    rn.randint(1,100),
+    sumSt,
+    int(summ + summ*(rn.randint(0,20)/100) + sumSt*0.2),
+    int(sumSt*0.2)
     )
     tables[12].addAll
     ( 
     i+1,
-    int(),
-    str(), #date
-    int(),
-    str(),
-    str() #date
+    rn.randint(1,cnt_row),
+    gen.dateRN[rn.randint(0,int(len(gen.dateRN)/2)-1)], #date
+    rn.randint(0,20),
+    'YN'[rn.randint(0,1)],
+    gen.dateRN[rn.randint(int(len(gen.dateRN)/2), len(gen.dateRN)-1)] #date
     )
     tables[13].addAll
     (  
