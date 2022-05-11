@@ -80,35 +80,37 @@ for i in range(cnt_row):
     letters[rn.randint(0,1)],
     str(rn.randint(1,10**5))
     )
+    tempSum = rn.randint(300,1000)
+
     tables[4].addAll
     (   
     i+1,
-    int(),
-    int(),
-    int(),
-    int(),
-    int(),
-    str(),
-    str(),
-    int(),
-    int(),
-    int(),
-    int(),
-    str(), #date
-    str()
+    rn.randint(1,cnt_row),
+    rn.randint(1,cnt_row),
+    rn.randint(1,cnt_row),
+    rn.randint(1,cnt_row),
+    rn.randint(1,cnt_row),
+    gen.alphRus[rn.randint(0,len(gen.alphRus) - 1)] + str(rn.randint(10**6, 10**7 - 1)),
+    f'+7({rn.randint(900,999)})-{rn.randint(100,999)}-{rn.randint(10,99)}-{rn.randint(10,99)}',
+    rn.randint(1,100),
+    tempSum,
+    int(tempSum*0.2),
+    int(tempSum*1.2),
+    gen.dateRN[rn.randint(0,len(gen.dateRN)-1)], #date
+    gen.alphRus[rn.randint(0,10)] + str(rn.randint(10**4, 10**5-1))
     )
     tables[5].addAll
     (   
     i+1,
-    int(),
-    int(),
-    int(),
-    int(),
-    str(),
-    str(),
-    str(),
-    str(), #date
-    str() #date
+    rn.randint(1,cnt_row),
+    rn.randint(1,cnt_row),
+    rn.randint(1,cnt_row),
+    rn.randint(500,1000),
+    gen.alphRus[rn.randint(0,len(gen.alphRus) - 1)] + str(rn.randint(10**6, 10**7 - 1)),
+    f'+7({rn.randint(900,999)})-{rn.randint(100,999)}-{rn.randint(10,99)}-{rn.randint(10,99)}',
+    gen.alphRus[rn.randint(0,10)] + str(rn.randint(10**4, 10**5-1)),
+    gen.dateRN[rn.randint(0,int(len(gen.dateRN)/2)-1)],
+    gen.dateRN[rn.randint(int(len(gen.dateRN)/2), len(gen.dateRN)-1)]
     )
     tables[6].addAll
     (  
