@@ -1,3 +1,5 @@
 *.db
 slovar
 /__pycache__
+/fonts
+test.py

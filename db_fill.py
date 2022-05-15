@@ -23,7 +23,7 @@ T_TOWN_TYPE = dCls.db_class('T_TOWN_TYPE')
 USERS = dCls.db_class('USERS')
 USER_TYPE_REF = dCls.db_class('USER_TYPE_REF')
 
-language = True
+language = False
 if (not language):
     gen.alphRus = gen.alphEng
     gen.wordsRus = gen.wordsEng
@@ -229,7 +229,7 @@ for i in range(cnt_row):
     ('кв.' if (language) else 'r.') + str(rn.randint(1,300)),
     'YN'[rn.randint(0,1)],
     gen.wordsRus[rn.randint(0, len(gen.wordsRus) - 1)][0] + gen.wordsRus[rn.randint(0, len(gen.wordsRus) - 1)][0] ,
-    f'{rn.randint(10**4, 10**5-1)}-{rn.randint(10**4, 10**5-1)}-{rn.randint(10**4, 10**5-1)}-{rn.randint(10**4, 10**5-1)}-',
+    f'{rn.randint(10**4, 10**5-1)}-{rn.randint(10**4, 10**5-1)}-{rn.randint(10**4, 10**5-1)}-{rn.randint(10**4, 10**5-1)}',
     str(rn.randint(10**8, 10**9-1)),
     f'+7({rn.randint(900,999)})-{rn.randint(100,999)}-{rn.randint(10,99)}-{rn.randint(10,99)}',
     f'+7({rn.randint(900,999)})-{rn.randint(100,999)}-{rn.randint(10,99)}-{rn.randint(10,99)}',

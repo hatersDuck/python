@@ -12,7 +12,7 @@ wordL2eng = []
 wordL3eng = []
 wordsRus = []
 wordsEng = []
-countWords = 100
+countWords = 200
 
 #Не убирал всё в функции думаю, что буду менять алгоритмы для разных языков
 while date < today:
