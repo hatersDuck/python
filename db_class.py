@@ -1,9 +1,9 @@
 
+from curses.ascii import isdigit
 import sqlite3
 
-db_connect = sqlite3.connect('bdRS.db')
+db_connect = sqlite3.connect('bdRS.db', check_same_thread = False)
 cursor = db_connect.cursor()
-
 
 class db_class(object):
     def __init__(self, nameTable:str):
@@ -43,10 +43,39 @@ class db_class(object):
             self.countRows += 1
             db_connect.commit()
 
+    def insertIntoText(self, txt:str):
+        exec = f'INSERT INTO {self.nameTable} VALUES('
+        atr = txt.split(',')
+        for i,a in enumerate(atr):
+            if (isdigit(a)):
+                exec += a + ','
+            else:
+                exec += f"'{a}',"
+        exec = exec[:len(exec) - 1] + ');'
+
+        cursor.execute(exec)
+        self.countRows += 1
+        db_connect.commit()
+
     def selectAll(self, where = None) -> list:
         exec = F'SELECT * FROM {self.nameTable}'
         if (where is not None):
             exec += ' WHERE ' + where + ';'
         cursor.execute(exec)
         return cursor.fetchall()
+
+    def updateValues(self, column:list, where):
+        exec = F'UPDATE {self.nameTable} SET '
+        check = False
+        for i in column:
+            if (check):
+                exec += ', '
+            exec += f'{i[0]} = '
+            if (isinstance(i[1], int)):
+                exec += str(i[1])
+            else:
+                exec += f"'{i[1]}'"
+            check = True
+        exec += 'WHERE ' + where + ';'
+        cursor.execute(exec)
 

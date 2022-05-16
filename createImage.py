@@ -3,10 +3,10 @@ import time
 from PIL import Image
 from PIL import ImageFont
 from PIL import ImageDraw 
-import db_class
+import db_class as dd
 
 # Поиск максимального размера строки в колонке
-def maxSizeColumn(table:db_class.db_class):
+def maxSizeColumn(table:dd.db_class):
     listText = table.selectAll()
     sizeCol = []
     for i in range(table.countCol):
@@ -32,7 +32,7 @@ def sizeIMG(sizeCol, sizeTxt, rows):
 
 
 
-def createIMG(table:db_class.db_class, where = None, startIndex = 0) -> Image:
+def createIMG(table:dd.db_class, where = None, startIndex = 0) -> Image:
     #Создание картинки
     listText = table.selectAll(where=where)
     sizeColumn = maxSizeColumn(table)
@@ -43,7 +43,7 @@ def createIMG(table:db_class.db_class, where = None, startIndex = 0) -> Image:
         w, h = sizeIMG(sizeColumn, sizeText, len(listText))
     
     start_pos = [sizeText*2, sizeText*2]
-    img = Image.new("P", (w, h), 'white')
+    img = Image.new("RGB", (w, h), 'white')
     draw = ImageDraw.Draw(img)
     font = ImageFont.truetype('/home/danila/codes/python/fonts/UbuntuMono-R.ttf', sizeText)
     step = [0, 0]

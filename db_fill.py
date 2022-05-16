@@ -22,12 +22,32 @@ TOWN = dCls.db_class('TOWN')
 T_TOWN_TYPE = dCls.db_class('T_TOWN_TYPE')
 USERS = dCls.db_class('USERS')
 USER_TYPE_REF = dCls.db_class('USER_TYPE_REF')
-
+tablesAll = {
+    'APUS_PLAN': APUS_PLAN,
+    'CONTRACT': CONTRACT,
+    'DEPT': DEPT,
+    'HOUSES': HOUSES,
+    'OTHER_SVC': OTHER_SVC,
+    'PAYMENTS': PAYMENTS,
+    'SALDO': SALDO,
+    'SERVICES': SERVICES,
+    'STREETS_REF': STREETS_REF,
+    'SVC_REF': SVC_REF,
+    'SVC_UNITS_REF': SVC_UNITS_REF,
+    'TARIFED_SERVICES': TARIFED_SERVICES,
+    'TAX_TARIF_REF': TAX_TARIF_REF,
+    'TERRITORY_CONSTITUTE': TERRITORY_CONSTITUTE,
+    'TERRITORY_TYPE': TERRITORY_TYPE,
+    'TOWN': TOWN,
+    'T_TOWN_TYPE': T_TOWN_TYPE,
+    'USERS': USERS,
+    'USER_TYPE_REF': USER_TYPE_REF
+}
 language = False
 if (not language):
     gen.alphRus = gen.alphEng
     gen.wordsRus = gen.wordsEng
-cnt_row = 50
+cnt_row = 10
 
 for i in range(cnt_row):
     PAYMENTS.addAll(   
