@@ -47,7 +47,7 @@ language = False
 if (not language):
     gen.alphRus = gen.alphEng
     gen.wordsRus = gen.wordsEng
-cnt_row = 10
+cnt_row = 50
 
 for i in range(cnt_row):
     PAYMENTS.addAll(   

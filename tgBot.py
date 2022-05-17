@@ -1,5 +1,3 @@
-from curses.ascii import isdigit
-
 import db_fill as df
 import createImage as cI
 import conf
@@ -15,7 +13,7 @@ state_storage = StateMemoryStorage()
 
 bot = telebot.TeleBot('5345983938:AAHgFq1PgoRMn65P21gjrMJGIseV2DMb39Q',
 state_storage= state_storage)
-
+print('Бот запущен')
 class statesCRM(StatesGroup):
     menu = State()
     login = State()
@@ -24,6 +22,7 @@ class statesCRM(StatesGroup):
     update = State()
     table = State()
     whereSelect = State()
+    delete = State()
 
 @bot.message_handler(commands=['start'])
 def start_user(message):
@@ -72,7 +71,8 @@ def whereSLC(message):
         img = cI.createIMG(data['table'], message.text)
         bot.send_photo(message.chat.id, img, caption= data['table'].nameTable)
         bot.set_state(message.chat.id, statesCRM.choice)
-        table(data['table'].nameTable)
+        message.text = data['table'].nameTable
+        table(message)
 
 @bot.message_handler(state = statesCRM.update)
 def updateVal(message):
@@ -113,7 +113,29 @@ def updateVal(message):
         elif (data['ind'] == 4):
             data['table'].updateValues(data['column'], where = message.text)
             bot.send_message(message.chat.id, "Изменения внесены", reply_markup=None)
-            table(data['table'].nameTable)
+            message.text = data['table'].nameTable
+            table(message)
+
+
+@bot.message_handler(state = statesCRM.add)
+def addNewVal(message):
+    with bot.retrieve_data(message.chat.id) as data:
+        data['table'].insertIntoText(message.text)
+        bot.send_message(message.chat.id, 'Элемент успешно добавлен')
+        bot.set_state(message.chat.id, statesCRM.choice)
+        message.text = data['table'].nameTable
+        table(message)
+
+@bot.message_handler(state = statesCRM.delete)
+def deletVal(message):
+    with bot.retrieve_data(message.chat.id) as data:
+        data['table'].deleteRow(message.text)
+        bot.send_message(message.chat.id, 'Элемент успешно удалён')
+        bot.set_state(message.chat.id, statesCRM.choice)
+        message.text = data['table'].nameTable
+        table(message)
+
+
 
 @bot.message_handler(state = statesCRM.choice)
 def choice(message):
@@ -134,19 +156,26 @@ def choice(message):
        with bot.retrieve_data(message.chat.id) as data:
             msg = data['table'].atribute[1][0]
             for i in data['table'].atribute[2:]:
-               msg += ',' + i[0]
-            msg += '\n' + str(data['table'].atribute[1][1])
+               msg += ', ' + i[0]
+            msg += '\n' + (str('Число') if (data['table'].atribute[1][1] == 1) else 'Строка')
             for i in data['table'].atribute[2:]:
-               msg += ',' + str('Число') if (i[1] == 1) else 'Строка'
+               msg += ', ' + (str('Число') if (i[1] == 1) else 'Строка')
             msg += '\n\nПример:\nДанила,322,13.09.2002'
-            
-            bot.send_message(message.chat.id, 'Введите в формате\n' + msg)
+            markup_reply = types.ReplyKeyboardMarkup(resize_keyboard = True)
+            markup_reply.add('Назад')
+            bot.send_message(message.chat.id, 'Введите в формате\n' + msg, reply_markup=markup_reply)
+            bot.set_state(message.chat.id, statesCRM.add)
     elif (txt == conf.buttons[5]):
-        pass
+        with bot.retrieve_data(message.chat.id) as data:
+            markup_reply = types.ReplyKeyboardMarkup(resize_keyboard = True)
+            markup_reply.add('Назад')
+            bot.send_message(message.chat.id, "Введите условие! Пример:\nID > 10 AND NAME LIKE '%Данила%'", reply_markup= markup_reply)
+            bot.set_state(message.chat.id, statesCRM.delete)
     else:
         bot.send_message(message.chat.id, 'Такой кнопки не существует!')
         with bot.retrieve_data(message.chat.id) as data:
-            table(data['table'].nameTable)
+            message.text = data['table'].nameTable
+            table(message)
 
     
     

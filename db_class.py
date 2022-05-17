@@ -45,12 +45,14 @@ class db_class(object):
 
     def insertIntoText(self, txt:str):
         exec = f'INSERT INTO {self.nameTable} VALUES('
+        temp = self.selectAll()[-1][0] + 1
+        exec += str(temp) + ','
         atr = txt.split(',')
         for i,a in enumerate(atr):
-            if (isdigit(a)):
-                exec += a + ','
-            else:
+            if (isinstance(a, str)):
                 exec += f"'{a}',"
+            else:
+                exec += str(a) + ','
         exec = exec[:len(exec) - 1] + ');'
 
         cursor.execute(exec)
@@ -78,4 +80,10 @@ class db_class(object):
             check = True
         exec += 'WHERE ' + where + ';'
         cursor.execute(exec)
+        db_connect.commit()
+
+    def deleteRow(self, where):
+        exec = F'DELETE FROM {self.nameTable} WHERE {where};'
+        cursor.execute(exec)
+        db_connect.commit()
 
