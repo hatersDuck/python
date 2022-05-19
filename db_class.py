@@ -60,11 +60,14 @@ class db_class(object):
         db_connect.commit()
 
     def selectAll(self, where = None) -> list:
-        exec = F'SELECT * FROM {self.nameTable}'
-        if (where is not None):
-            exec += ' WHERE ' + where + ';'
-        cursor.execute(exec)
-        return cursor.fetchall()
+        try:
+            exec = F'SELECT * FROM {self.nameTable}'
+            if (where is not None):
+                exec += ' WHERE ' + where + ';'
+            cursor.execute(exec)
+            return cursor.fetchall()
+        except:
+            return None
 
     def updateValues(self, column:list, where):
         exec = F'UPDATE {self.nameTable} SET '
@@ -86,4 +89,3 @@ class db_class(object):
         exec = F'DELETE FROM {self.nameTable} WHERE {where};'
         cursor.execute(exec)
         db_connect.commit()
-
