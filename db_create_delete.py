@@ -1,4 +1,3 @@
-from colorama import Cursor
 import db_class
 
 create_tables = ["""
